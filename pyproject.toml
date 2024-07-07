@@ -1,0 +1,51 @@
+[project]
+name = "tilebg"
+version = "0.1.0"
+authors = [{name="ccornix"}]
+description = "Seamless geometric desktop background image generator"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "sympy~=1.12",
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+
+[project.optional-dependencies]
+devel = [
+  "black>=24.4",
+  "flake8>=7.1",
+  "ipython>=8.26",
+  "mypy>=1.10",
+  "pytest>=8.2",
+]
+
+[project.scripts]
+tilebg = "tilebg.__main__:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 79
+target-version = ["py312"]
+
+[tool.mypy]
+cache_dir = "/tmp/tilebg_mypy_cache"
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+
+[[tool.mypy.overrides]]
+module = "sympy"
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+cache_dir = "/tmp/tilebg_pytest_cache"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
