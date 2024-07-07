@@ -50,7 +50,7 @@ instead.
 To generate one of the SVGs, run the following command
 
 ```sh
-tilebg <pattern-name>
+python -m tilebg <pattern-name>
 ```
 
 where `<pattern-name>` is one of those listed below in the Gallery, for instance, `hexagonal`.
@@ -62,32 +62,32 @@ where `<pattern-name>` is one of those listed below in the Gallery, for instance
 
 #### `hexagons`
 
-<a href="resources/hexagons.svg">
-  <img src="resources/hexagons.svg" width="960">
+<a href="resources/hexagons.png">
+  <img src="resources/hexagons.png" width="960">
 </a>
 
 #### `gosperflakes2`
 
 [Gosper islands](https://mathworld.wolfram.com/GosperIsland.html) (2 iterations)
 
-<a href="resources/gosperflakes2.svg">
-  <img src="resources/gosperflakes2.svg" width="960">
+<a href="resources/gosperflakes2.png">
+  <img src="resources/gosperflakes2.png" width="960">
 </a>
 
 #### `kochflakes3`
 
 [Koch islands](https://mathworld.wolfram.com/KochSnowflake.html) (3 iterations)
 
-<a href="resources/kochflakes3.svg">
-  <img src="resources/kochflakes3.svg" width="960">
+<a href="resources/kochflakes3.png">
+  <img src="resources/kochflakes3.png" width="960">
 </a>
 
 #### `minkowskiflakes4`
 
 [Minkowski islands](https://mathworld.wolfram.com/MinkowskiSausage.html) (4 iterations)
 
-<a href="resources/minkowskiflakes4.svg">
-  <img src="resources/minkowskiflakes4.svg" width="960">
+<a href="resources/minkowskiflakes4.png">
+  <img src="resources/minkowskiflakes4.png" width="960">
 </a>
 
 
