@@ -10,7 +10,7 @@ pkgs.mkShell {
   src = ./.;
   name = "impurePythonEnv";
   venvDir = "./env";
-  packages = [ pkgs.gitlint ];
+  packages = [ pkgs.gitlint pkgs.librsvg ];
   buildInputs = [
     # A Python interpreter including the 'venv' module is required to bootstrap
     # the environment.
