@@ -23,8 +23,8 @@ devel = [
   "pytest>=8.2",
 ]
 
-[project.scripts]
-tilebg = "tilebg.__main__:main"
+# [project.scripts]
+# tilebg = ""
 
 [build-system]
 requires = ["setuptools>=61.0"]
