@@ -9,7 +9,12 @@
   xmlns:dc="http://purl.org/dc/elements/1.1/">
 <title property="dc:title">Randomly colored hexagons</title>
 <desc property="dc:creator">ccornix</desc>
-<style type="text/css">@import "style.css"</style>
+<style type="text/css">
+  .stroke { stroke:#202020; stroke-width:1; stroke-linecap:round; }
+  .fill-0 { fill:#303030; }
+  .fill-1 { fill:#404040; }
+  .fill-2 { fill:#505050; }
+</style>
 <!-- Flip the y axis and move the origin to the bottom left corner -->
 <g transform="translate(0,1080) scale(1,-1)">
 <path class="stroke fill-0" d="M 0.0,18.0 16.0,9.0 16.0,-9.0 0.0,-18.0 -16.0,-9.0 -16.0,9.0 z"/>

@@ -10,7 +10,6 @@ for pyfile in ../src/tilebg/patterns/*.py; do
   bname="${pyfile##*/}"
   name="${bname%.py}"
   [ "$name" = __init__ ] && continue
-  echo "Rendering $name..."
-  [ -e "$name.svg" ] || python -m tilebg "$name" > "$name.svg"
-  rsvg-convert -a -w 1920 "$name.svg" -o "$name.png"
+  echo "Generating $name..."
+  python -m tilebg "$name" > "$name.svg"
 done
