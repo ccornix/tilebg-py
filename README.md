@@ -1,6 +1,6 @@
 # Seamless geometric desktop background generator
 
-SVG generator to obtain a seamless geometric desktop backgrounds with each tile having a pseudo-random fill color selected from a predefined set. The line style and fill colors are defined in an [external CSS file](resources/style.css), and therefore, easily replaceable to re-color the background image.
+SVG generator to obtain a seamless geometric desktop backgrounds with each tile having a pseudo-random fill color selected from a predefined set. The line style and fill colors are defined in an embedded CSS that can be overridden by a custom style sheet to re-color the background image.
 
 ## Setup
 
@@ -47,13 +47,35 @@ instead.
 
 ## Usage
 
-To generate one of the SVGs, run the following command
+### SVG generation
+
+To generate one of the SVGs, for instance, `hexagonal`, run the following
+command:
 
 ```sh
-python -m tilebg <pattern-name>
+python -m tilebg hexagonal > bg.svg
 ```
 
-where `<pattern-name>` is one of those listed below in the Gallery, for instance, `hexagonal`.
+### Rendering to PNG
+
+To render the resulting SVG to a PNG file, one can, for instance, use the
+command-line application `rsvg-convert` of `librsvg`. It also supports
+overriding the embedded CSS by a custom CSS file.
+
+Consider we have the following color overrides, contained in `style.css`:
+
+```css
+.stroke { stroke:#000000 !important; }
+.fill-0 { fill:#202020 !important; }
+.fill-1 { fill:#404040 !important; }
+.fill-2 { fill:#606060 !important; }
+```
+
+To render the SVG in 4K resolution and using our custom colors, we then run `rsvg-convert` as
+
+```sh
+rsvg-convert -a -w 3840 --stylesheet=style.css bg.svg > bg.png
+```
 
 
 ## Gallery
@@ -62,32 +84,32 @@ where `<pattern-name>` is one of those listed below in the Gallery, for instance
 
 #### `hexagons`
 
-<a href="resources/hexagons.png">
-  <img src="resources/hexagons.png" width="960">
+<a href="resources/hexagons.svg">
+  <img src="resources/hexagons.svg" width="960">
 </a>
 
 #### `gosperflakes2`
 
 [Gosper islands](https://mathworld.wolfram.com/GosperIsland.html) (2 iterations)
 
-<a href="resources/gosperflakes2.png">
-  <img src="resources/gosperflakes2.png" width="960">
+<a href="resources/gosperflakes2.svg">
+  <img src="resources/gosperflakes2.svg" width="960">
 </a>
 
 #### `kochflakes3`
 
 [Koch islands](https://mathworld.wolfram.com/KochSnowflake.html) (3 iterations)
 
-<a href="resources/kochflakes3.png">
-  <img src="resources/kochflakes3.png" width="960">
+<a href="resources/kochflakes3.svg">
+  <img src="resources/kochflakes3.svg" width="960">
 </a>
 
 #### `minkowskiflakes4`
 
 [Minkowski islands](https://mathworld.wolfram.com/MinkowskiSausage.html) (4 iterations)
 
-<a href="resources/minkowskiflakes4.png">
-  <img src="resources/minkowskiflakes4.png" width="960">
+<a href="resources/minkowskiflakes4.svg">
+  <img src="resources/minkowskiflakes4.svg" width="960">
 </a>
 
 
@@ -100,6 +122,4 @@ gitlint install-hook
 
 ## References
 
-The randomly colored hexagonal grid pattern was inspired by paepaestockphoto's artwork at
-
-https://www.vecteezy.com/vector-art/6941002-small-hexagon-shape-with-light-white-and-grey-color-seamless-pattern-background
+The randomly colored hexagonal grid pattern was inspired by [paepaestockphoto's artwork](https://www.vecteezy.com/vector-art/6941002-small-hexagon-shape-with-light-white-and-grey-color-seamless-pattern-background).
