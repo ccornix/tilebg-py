@@ -8,17 +8,16 @@ SVG generator to obtain a seamless geometric desktop backgrounds with each tile 
 
 Clone this repository using `git` and enter the repository directory.
 
-When using the [Nix](https://www.nixos.org) package manager, a development shell having everything set up can be started with Flakes enabled as
+When using the [Nix](https://www.nixos.org) package manager, a development shell can be started using stable Nix as
+
+```sh
+nix-shell
+```
+
+while using Flakes-enabled Nix as
 
 ```sh
 nix develop
-```
-
-Alternatively, the development shell can be started without even explicitly
-cloning the repository as
-
-```sh
-nix develop github:ccornix/tilebg-py
 ```
 
 ### Manual installation into a virtual environment using `pip` (Linux)
@@ -36,7 +35,7 @@ pip install .
 Note that `python` might be invoked differently, depending on the Linux
 distribution, e.g. as `python3` or `python312`.
 
-For an editable installation with development-time dependencies, run
+For an editable installation with development dependencies, run
 
 ```sh
 pip install -e .[devel]
@@ -112,13 +111,6 @@ rsvg-convert -a -w 3840 --stylesheet=style.css bg.svg > bg.png
   <img src="resources/minkowskiflakes4.svg" width="960">
 </a>
 
-
-## Development
-
-This repository follows the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification. To enforce it, install the `gitlint` commit-msg hook on the first occasion as
-```sh
-gitlint install-hook
-```
 
 ## References
 
