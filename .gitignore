@@ -4,6 +4,9 @@
 result
 result/
 
+# Direnv
+.direnv/
+
 ## Python
 
 # Byte-compiled / optimized / DLL files
