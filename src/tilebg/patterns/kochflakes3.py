@@ -7,13 +7,13 @@ __license__ = "MIT"
 from sympy import Rational, pi, sqrt
 from typing import Any
 
-from ..lib.koch import koch_island
-from ..lib.grid import (
+from ..koch import koch_island
+from ..grid import (
     generate_grid,
     make_odd_row_shift_offsets_fn,
     make_random_fill_classes_fn,
 )
-from ..lib.path import scale, shift, rotate
+from ..path import scale, shift, rotate
 
 
 def parameters() -> dict[str, Any]:

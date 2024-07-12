@@ -7,12 +7,12 @@ __license__ = "MIT"
 from sympy import sqrt
 from typing import Any
 
-from ..lib.grid import (
+from ..grid import (
     generate_grid,
     make_odd_row_shift_offsets_fn,
     make_random_fill_classes_fn,
 )
-from ..lib.path import regular_polygon_path, scale
+from ..path import regular_polygon_path, scale
 
 
 def parameters() -> dict[str, Any]:

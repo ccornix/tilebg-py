@@ -4,7 +4,7 @@ import argparse
 import inspect
 import random
 
-from .lib.svg import generate_svg
+from .svg import generate_svg
 from . import patterns
 
 

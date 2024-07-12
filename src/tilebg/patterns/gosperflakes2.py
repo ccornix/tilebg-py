@@ -7,13 +7,13 @@ __license__ = "MIT"
 from sympy import sqrt
 from typing import Any
 
-from ..lib.gosper import gosper_island
-from ..lib.grid import (
+from ..gosper import gosper_island
+from ..grid import (
     generate_grid,
     make_odd_row_shift_offsets_fn,
     make_random_fill_classes_fn,
 )
-from ..lib.path import scale
+from ..path import scale
 
 
 def parameters() -> dict[str, Any]:
