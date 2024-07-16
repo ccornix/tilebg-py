@@ -95,14 +95,6 @@ rsvg-convert -a -w 3840 --stylesheet=style.css bg.svg > bg.png
   <img src="resources/gosperflakes2.svg" width="960">
 </a>
 
-#### `kochflakes3`
-
-[Koch islands](https://mathworld.wolfram.com/KochSnowflake.html) (3 iterations)
-
-<a href="resources/kochflakes3.svg">
-  <img src="resources/kochflakes3.svg" width="960">
-</a>
-
 #### `minkowskiflakes4`
 
 [Minkowski islands](https://mathworld.wolfram.com/MinkowskiSausage.html) (4 iterations)

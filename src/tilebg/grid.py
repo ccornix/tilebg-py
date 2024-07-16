@@ -6,7 +6,7 @@ __license__ = "MIT"
 __all__ = [
     "generate_grid",
     "make_odd_row_shift_offsets_fn",
-    "make_random_fill_classes_fn",
+    "make_random_fill_svg_class_fn",
 ]
 
 from collections.abc import Callable, Sequence
@@ -21,22 +21,22 @@ from .svg import SVGPath
 
 def generate_grid(
     *,
-    element_paths: Sequence[Sequence[Matrix]],
+    element_path: Sequence[Matrix],
     spacings: tuple[int, int],
     resolution: tuple[int, int],
     offsets_fn: Callable[[int, int], tuple[TNum, TNum]] | None,
-    classes_fn: Callable[[int, int], list[list[str]]],
+    svg_class_fn: Callable[[int, int], list[str]],
 ) -> list[SVGPath]:
     """Generate a whole grid of SVG paths.
 
-    The path(s) for a single element in the grid is (are) passed through
-    `element_paths`, which is then cloned and layed out with given `spacings`.
-    Function `offests_fn` may define an index-dependent offset, which can be
-    used, for instance, to define a hexagonal grid with alternating horizontal
-    row offsets. The `resolution` of the target image is used to estimate how
-    many times elements needs to be repeated in the horizontal and vertical
-    directions. Finally, `classes_fn` should yield an index-dependent style for
-    each path of a cell.
+    The path for a single element in the grid is passed through `element_path`,
+    which is then cloned and layed out with given `spacings`. Function
+    `offests_fn` may define an index-dependent offset, which can be used, for
+    instance, to define a hexagonal grid with alternating horizontal row
+    offsets. The `resolution` of the target image is used to estimate how many
+    times elements needs to be repeated in the horizontal and vertical
+    directions. Finally, `svg_class_fn` should yield an index-dependent SVG
+    class for the path of the element.
 
     A list of SVG path data is returned.
     """
@@ -47,18 +47,18 @@ def generate_grid(
 
     offsets_fn = offsets_fn or (lambda ix, iy: (0, 0))
 
-    edge_classes_cache: dict[tuple[int, int], list[list[str]]] = {}
+    edge_svg_class_cache: dict[tuple[int, int], list[str]] = {}
 
-    def wrapped_classes(ix: int, iy: int) -> list[list[str]]:
+    def wrapped_svg_class(ix: int, iy: int) -> list[str]:
         jx = ix % Nx
         jy = iy % Ny
         try:
-            classes = edge_classes_cache[jx, jy]
+            svg_class = edge_svg_class_cache[jx, jy]
         except KeyError:
-            classes = classes_fn(jx, jy)
+            svg_class = svg_class_fn(jx, jy)
             if jx == 0 or jy == 0:
-                edge_classes_cache[jx, jy] = classes
-        return classes
+                edge_svg_class_cache[jx, jy] = svg_class
+        return svg_class
 
     return [
         SVGPath(
@@ -76,18 +76,17 @@ def generate_grid(
                     ),
                 ),
             ),
-            classes=wrapped_classes(ix, iy)[ip],
+            svg_class=wrapped_svg_class(ix, iy),
         )
         for iy in range(Ny + 1)
         for ix in range(Nx + 1)
-        for ip, element_path in enumerate(element_paths)
     ]
 
 
 def make_odd_row_shift_offsets_fn(
     shift_width: TNum,
 ) -> Callable[[int, int], tuple[TNum, TNum]]:
-    """Make a classes factory function for `element_count` number of paths."""
+    """Make an elements offsets factory function."""
     assert shift_width > 0
 
     def offsets_fn(ix: int, iy: int) -> tuple[TNum, TNum]:
@@ -97,20 +96,14 @@ def make_odd_row_shift_offsets_fn(
     return offsets_fn
 
 
-def make_random_fill_classes_fn(
-    *,
-    fill_count: int,
-    element_count: int = 1,
-) -> Callable[[int, int], list[list[str]]]:
-    """Make a classes factory function for `element_count` number of paths."""
+def make_random_fill_svg_class_fn(
+    fill_count: int
+) -> Callable[[int, int], list[str]]:
+    """Make an SVG class factory function for a path."""
     assert fill_count > 0
-    assert element_count > 0
 
-    def classes_fn(ix: int, iy: int) -> list[list[str]]:
-        """Return SVG path classes with a randomly selected fill style."""
-        return [
-            ["stroke", f"fill-{randrange(fill_count)}"]
-            for _ in range(element_count)
-        ]
+    def svg_class_fn(ix: int, iy: int) -> list[str]:
+        """Return SVG path class with a randomly selected fill style."""
+        return ["stroke", f"fill-{randrange(fill_count)}"]
 
-    return classes_fn
+    return svg_class_fn

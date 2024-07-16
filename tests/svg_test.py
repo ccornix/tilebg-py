@@ -46,7 +46,7 @@ def test_svg_generation() -> None:
                     Matrix([-2, 1]),
                     Matrix([-2, -1]),
                 ],
-                classes=["stroke", "fill-0"],
+                svg_class=["stroke", "fill-0"],
             )
         ],
     )

@@ -18,28 +18,28 @@ def test_rectangular_grid() -> None:
         Matrix([-2, -1]),
     ]
 
-    def classes_fn(ix: int, iy: int) -> list[list[str]]:
-        return [[f"test-{(3 * iy + ix) % 4}"]]
+    def svg_class_fn(ix: int, iy: int) -> list[str]:
+        return [f"test-{(3 * iy + ix) % 4}"]
 
     paths = generate_grid(
-        element_paths=[rectangle],
+        element_path=rectangle,
         spacings=(4, 2),
         resolution=(8, 4),
         offsets_fn=None,
-        classes_fn=classes_fn,
+        svg_class_fn=svg_class_fn,
     )
 
     assert paths == [
         # Row 0
-        SVGPath(points=shift(rectangle, Matrix([0, 0])), classes=["test-0"]),
-        SVGPath(points=shift(rectangle, Matrix([4, 0])), classes=["test-1"]),
-        SVGPath(points=shift(rectangle, Matrix([8, 0])), classes=["test-0"]),
+        SVGPath(points=shift(rectangle, Matrix([0, 0])), svg_class=["test-0"]),
+        SVGPath(points=shift(rectangle, Matrix([4, 0])), svg_class=["test-1"]),
+        SVGPath(points=shift(rectangle, Matrix([8, 0])), svg_class=["test-0"]),
         # Row 1
-        SVGPath(points=shift(rectangle, Matrix([0, 2])), classes=["test-3"]),
-        SVGPath(points=shift(rectangle, Matrix([4, 2])), classes=["test-0"]),
-        SVGPath(points=shift(rectangle, Matrix([8, 2])), classes=["test-3"]),
+        SVGPath(points=shift(rectangle, Matrix([0, 2])), svg_class=["test-3"]),
+        SVGPath(points=shift(rectangle, Matrix([4, 2])), svg_class=["test-0"]),
+        SVGPath(points=shift(rectangle, Matrix([8, 2])), svg_class=["test-3"]),
         # Row 2
-        SVGPath(points=shift(rectangle, Matrix([0, 4])), classes=["test-0"]),
-        SVGPath(points=shift(rectangle, Matrix([4, 4])), classes=["test-1"]),
-        SVGPath(points=shift(rectangle, Matrix([8, 4])), classes=["test-0"]),
+        SVGPath(points=shift(rectangle, Matrix([0, 4])), svg_class=["test-0"]),
+        SVGPath(points=shift(rectangle, Matrix([4, 4])), svg_class=["test-1"]),
+        SVGPath(points=shift(rectangle, Matrix([8, 4])), svg_class=["test-0"]),
     ]

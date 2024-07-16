@@ -15,7 +15,7 @@ class SVGPath:
     """Representation of an SVG path."""
 
     points: list[Matrix]
-    classes: list[str]
+    svg_class: list[str]
 
     def __str__(self) -> str:
         """Return an SVG XML string representation."""
@@ -27,8 +27,8 @@ class SVGPath:
             points = self.points
             suffix = ""
         points_str = " ".join(f"{float(p[0])},{float(p[1])}" for p in points)
-        class_str = " ".join(self.classes)
-        return f'<path class="{class_str}" d="M {points_str}{suffix}"/>'
+        svg_class_str = " ".join(self.svg_class)
+        return f'<path class="{svg_class_str}" d="M {points_str}{suffix}"/>'
 
 
 def generate_svg(
